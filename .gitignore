@@ -1,0 +1,45 @@
+# Logs - never push real / raw logs
+logs/
+*.log
+*.evtx
+*.csv
+*.jsonl
+*.pcap
+*.har
+
+# Splunk / SIEM data - huge + contains sensitive data
+splunk/
+*.idx
+*.tsidx
+/opt/splunk/var/
+splunk-data/
+
+# Wazuh / ELK leftovers if you ever test them
+wazuh/
+elasticsearch/
+kibana/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+*~
+
+# Secrets - never commit these
+.env
+*.pem
+*.key
+*.pfx
+credentials*.txt
+secrets*.txt
+*.password
+
+# Python / venv if you use it later
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Screenshots with sensitive info - review manually before adding
+# screenshots/*.png
