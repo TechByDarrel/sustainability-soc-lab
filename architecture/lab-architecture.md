@@ -87,7 +87,7 @@ Nginx Logs ─────────┘                              │
 
 ## 6. SIEM Deployment Decision
 
-Wazuh is the initial preferred candidate.
+Decision: Splunk Enterprise Trial on 【entity-Windows¦canonical_name=Windows】 11 host. Wazuh all-in-one was considered but deferred - it recommends 4 cores / 4GB+ RAM for manager + indexer + dashboard, which exceeds this 2-core lab. ELK deferred for similar overhead (3 services). Splunk provides single-service search, dashboards and alerting in trial, suitable for the Dec 29 deadline. Trial expiry is a documented limitation.
 
 However, the final deployment method will depend on:
 
