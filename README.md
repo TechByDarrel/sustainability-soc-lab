@@ -31,7 +31,7 @@ The scenario represents a fictional manufacturing organisation concerned about t
 - Splunk Enterprise Trial (60-day) - selected for lab use based on 2-core / 16GB hardware. Wazuh / ELK deferred as too resource-heavy for this laptop.
 - MITRE ATT&CK
 
-SIEM decision: Splunk Enterprise Trial on 【entity-Windows¦canonical_name=Windows】 11 host. See architecture/lab-architecture.md Section 6 for reasoning.
+SIEM decision: Splunk Enterprise Trial on Windows 11 host. See architecture/lab-architecture.md Section 6 for reasoning.
 
 ## Project Data Integrity
 
