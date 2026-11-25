@@ -33,3 +33,12 @@ index=main sourcetype=sustainability_soc log_source=auth action=login result=fai
 # DET-008 Suspicious User-Agent curl
 index=main sourcetype=sustainability_soc log_source=web user_agent="curl*"
 | table _time, user, src_ip, url, bytes_out, user_agent
+
+# DET-009 Privilege Escalation Attempt
+index=main sourcetype=sustainability_soc log_source=auth action IN ("sudo","su","runas","privilege_escalation") result=failure | stats count by user, src_ip | where count>=3
+
+# DET-010 Suspicious PowerShell
+index=main sourcetype=sustainability_soc (log_source=web OR log_source=auth) (process="powershell*" OR user_agent="*powershell*" OR url="*powershell*" OR message="*powershell*") | table _time, user, src_ip, message, url
+
+# DET-011 Login from New Location
+index=main sourcetype=sustainability_soc log_source=auth action=login result=success | stats values(src_ip) as ips, dc(src_ip) as distinct_ips by user | where distinct_ips>1
