@@ -68,3 +68,13 @@ No simulated findings will be presented as evidence of a real-world compromise.
 ## Project Status
 
 Preparation phase. No SIEM has been deployed and no security detections have been implemented yet.
+
+## Phase 2-3 - Splunk Cloud SOC (DONE)
+- SIEM: Splunk Cloud Platform Trial - prd-p-10393.splunkcloud.com
+- Ingestion: HEC - 301 synthetic events (auth 120, web 100, firewall 80 + 1 test)
+- Detections: DET-001 to DET-008 - see detections/DET-001_to_DET-008.spl
+- Alerts: 8/8 saved, every 5 min
+- Dashboard: Sustainability SOC - Detection Dashboard (4 panels)
+- Incidents: INC-001 Brute Force + Port Scan (Blocked), INC-002 Exfiltration Pattern (Investigate)
+- See docs/incident-report.md and docs/response-playbook.md
+- All data is synthetic test data, labelled synthetic=true
