@@ -1,0 +1,35 @@
+# DET-001 Brute Force Login
+index=main sourcetype=sustainability_soc log_source=auth action=login result=failure
+| stats count by src_ip, user
+| where count >= 10
+
+# DET-002 Successful Login After Brute Force
+index=main sourcetype=sustainability_soc log_source=auth src_ip="45.155.204.11" action=login result=success
+| stats count by result
+
+# DET-003 Large Data Download
+index=main sourcetype=sustainability_soc log_source=web bytes_out > 10000000
+| table _time, user, src_ip, url, bytes_out, user_agent
+
+# DET-004 Suspicious Admin Backup Access
+index=main sourcetype=sustainability_soc log_source=web url="/admin/backup.zip"
+| table _time, user, src_ip, url, bytes_out
+
+# DET-005 Port Scan
+index=main sourcetype=sustainability_soc log_source=firewall action=blocked
+| stats dc(dest_port) as distinct_ports, count by src_ip
+| where distinct_ports >= 10
+
+# DET-006 Firewall Block Spike
+index=main sourcetype=sustainability_soc log_source=firewall action=blocked
+| stats count by src_ip, dst_ip
+| sort -count
+
+# DET-007 Failed Login Spike by User
+index=main sourcetype=sustainability_soc log_source=auth action=login result=failure
+| stats count by user
+| sort -count
+
+# DET-008 Suspicious User-Agent curl
+index=main sourcetype=sustainability_soc log_source=web user_agent="curl*"
+| table _time, user, src_ip, url, bytes_out, user_agent
